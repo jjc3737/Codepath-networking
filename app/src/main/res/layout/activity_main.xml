@@ -9,21 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.codepath.network_example.MainActivity">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/etSearch"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:inputType="text" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/tvTitle"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/etSearch"
-        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="100dp"

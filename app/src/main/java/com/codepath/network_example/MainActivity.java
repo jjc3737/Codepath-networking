@@ -10,19 +10,23 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
+    @BindView(R.id.ivNetworkImage) ImageView image;
     String urlString = "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
+
         setContentView(R.layout.activity_main);
         grabImageFromOnline();
     }
-
-
 
     private void grabImageFromOnline() {
         URL url;
@@ -43,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
             in.close();
 
             // Load Bitmap into ImageView
-            ImageView img = (ImageView) findViewById(R.id.ivNetworkImage);
-            img.setImageBitmap(bitmap);
+            image.setImageBitmap(bitmap);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -68,8 +68,8 @@ public class ImageLoadingTask extends AsyncTask<String, Void, Bitmap> {
     protected void onPostExecute(Bitmap result) {
         // This method is executed in the UIThread
         // with access to the result of the task
-        // Load Bitmap into ImageView
-//        image.setImageBitmap(result);
+        // post to the listener the bitmap result
+
         if (listener != null)
             listener.onFinally(result);
     }

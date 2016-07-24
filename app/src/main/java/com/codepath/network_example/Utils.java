@@ -9,24 +9,6 @@ import org.json.JSONObject;
  */
 public class Utils {
 
-    //            //Get title
-//            JSONObject headline = first.getJSONObject("headline");
-//            String main = headline.getString("main");
-//            TextView title = (TextView) findViewById(R.id.tvTitle);
-//            title.setText(main);
-//
-//            //Get image url
-//            JSONArray multimedia = first.getJSONArray("multimedia");
-//            JSONObject firstImage = multimedia.getJSONObject(0);
-//            String imageUrl = firstImage.getString("url");
-//
-//
-//            if (imageUrl != null) {
-//                nytimes += imageUrl;
-//
-//                //Set it to image view
-//                new MyAsyncTask().execute(nytimes);
-
     static public String getTitleFromArticle(JSONObject first) {
         String title = null;
         try {

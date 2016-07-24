@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setUpImageLoadingTask();
         setUpJsonParsingTask();
 
-        imageLoadingTask.execute(urlString);
+        loadSavedImage();
 
         //Async tasks can only be executed once
         //So create another image loading taks
@@ -66,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void loadSavedImage() {
+        String savedImage = Utils.getSavedImageURL(this);
+
+        //If null, load puppy picture
+        if (savedImage == null)
+            imageLoadingTask.execute(urlString);
+        else
+            imageLoadingTask.execute(savedImage);
+
     }
 
     private void setUpJsonParsingTask() {
@@ -91,8 +102,12 @@ public class MainActivity extends AppCompatActivity {
 
                 //Get url and show image
                 String imageUrl = Utils.getImageURLfromArticle(firstObject);
-                if (imageUrl != null)
+                if (imageUrl != null) {
                     imageLoadingTask.execute(imageUrl);
+
+                    //Save to prefs
+                    Utils.saveImageURLToPrefs(MainActivity.this, imageUrl);
+                }
             }
         });
 

@@ -1,5 +1,9 @@
 package com.codepath.network_example;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,23 +13,7 @@ import org.json.JSONObject;
  */
 public class Utils {
 
-    //            //Get title
-//            JSONObject headline = first.getJSONObject("headline");
-//            String main = headline.getString("main");
-//            TextView title = (TextView) findViewById(R.id.tvTitle);
-//            title.setText(main);
-//
-//            //Get image url
-//            JSONArray multimedia = first.getJSONArray("multimedia");
-//            JSONObject firstImage = multimedia.getJSONObject(0);
-//            String imageUrl = firstImage.getString("url");
-//
-//
-//            if (imageUrl != null) {
-//                nytimes += imageUrl;
-//
-//                //Set it to image view
-//                new MyAsyncTask().execute(nytimes);
+    static public String LAST_USED_IMAGE_URL = "last_used_image_url";
 
     static public String getTitleFromArticle(JSONObject first) {
         String title = null;
@@ -51,5 +39,18 @@ public class Utils {
         }
 
         return url == null ? url : nytimes + url;
+    }
+
+    static public void saveImageURLToPrefs(Context context, String url) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor e = prefs.edit();
+
+        e.putString(Utils.LAST_USED_IMAGE_URL, url);
+        e.apply();
+    }
+
+    static public String getSavedImageURL(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString(Utils.LAST_USED_IMAGE_URL, null);
     }
 }

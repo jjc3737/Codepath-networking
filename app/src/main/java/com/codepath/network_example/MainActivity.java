@@ -46,13 +46,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setUpImageLoadingTask();
-        setUpJsonParsingTask();
-
         loadSavedImage();
-
-        //Async tasks can only be executed once
-        //So create another image loading taks
-        setUpImageLoadingTask();
 
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -60,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_DONE ||
                         actionId == EditorInfo.IME_ACTION_NEXT
                         || actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                    //Async tasks can only be executed once
+                    //So create another image loading taks
+                    setUpImageLoadingTask();
+                    setUpJsonParsingTask();
                     //Parse json
                     parsingTask.execute(nyUrlString, v.getText().toString());
                 }
